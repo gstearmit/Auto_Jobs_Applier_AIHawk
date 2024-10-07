@@ -1,3 +1,11 @@
+# REPO :
+https://github.com/gstearmit/Auto_Jobs_Applier_AIHawk.git
+
+https://www.cvwizard.com/app/resumes/3e25a28e-e102-492d-98e5-715f5adbea03/edit?ra=3Qb3Pv9PCiwjKshczL0PZ0
+
+https://app.enhancv.com/resume/6703a057d59b8e77fe7b2737
+
+
 <div align="center">
 <img src="./assets/AIHawk.png">
 

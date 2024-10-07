@@ -12,102 +12,107 @@ from loguru import logger
 class AIHawkAuthenticator:
 
     def __init__(self, driver=None):
+        # Khởi tạo đối tượng với trình duyệt được cung cấp
         self.driver = driver
-        logger.debug(f"AIHawkAuthenticator initialized with driver: {driver}")
+        logger.debug(f"AIHawkAuthenticator được khởi tạo với trình duyệt: {driver}")
 
     def start(self):
-        logger.info("Starting Chrome browser to log in to AIHawk.")
+        # Bắt đầu quá trình đăng nhập
+        logger.info("Khởi động trình duyệt Chrome để đăng nhập vào AIHawk.")
         if self.is_logged_in():
-            logger.info("User is already logged in. Skipping login process.")
+            logger.info("Người dùng đã đăng nhập. Bỏ qua quá trình đăng nhập.")
             return
         else:
-            logger.info("User is not logged in. Proceeding with login.")
+            logger.info("Người dùng chưa đăng nhập. Tiến hành đăng nhập.")
             self.handle_login()
 
     def handle_login(self):
-        logger.info("Navigating to the AIHawk login page...")
+        # Xử lý quá trình đăng nhập
+        logger.info("Điều hướng đến trang đăng nhập AIHawk...")
         self.driver.get("https://www.linkedin.com/login")
         if 'feed' in self.driver.current_url:
-            logger.debug("User is already logged in.")
+            logger.debug("Người dùng đã đăng nhập.")
             return
         try:
             self.enter_credentials()
         except NoSuchElementException as e:
-            logger.error(f"Could not log in to AIHawk. Element not found: {e}")
+            logger.error(f"Không thể đăng nhập vào AIHawk. Không tìm thấy phần tử: {e}")
         self.handle_security_check()
 
 
     def enter_credentials(self):
         try:
-            logger.debug("Enter credentials...")
+            logger.debug("Nhập thông tin đăng nhập...")
             
-            check_interval = 4  # Interval to log the current URL
+            check_interval = 4  # Khoảng thời gian để ghi lại URL hiện tại
             elapsed_time = 0
 
             while True:
-                # Log current URL every 4 seconds and remind the user to log in
+                # Ghi lại URL hiện tại mỗi 4 giây và nhắc người dùng đăng nhập
                 current_url = self.driver.current_url
-                logger.info(f"Please login on {current_url}")
+                logger.info(f"Vui lòng đăng nhập tại {current_url}")
 
-                # Check if the user is already on the feed page
+                # Kiểm tra xem người dùng đã ở trang feed chưa
                 if 'feed' in current_url:
-                    logger.debug("Login successful, redirected to feed page.")
+                    logger.debug("Đăng nhập thành công, đã chuyển hướng đến trang feed.")
                     break
                 else:
-                    # Optionally wait for the password field (or any other element you expect on the login page)
+                    # Tùy chọn chờ trường mật khẩu (hoặc bất kỳ phần tử nào khác bạn mong đợi trên trang đăng nhập)
                     WebDriverWait(self.driver, 10).until(
                         EC.presence_of_element_located((By.ID, "password"))
                     )
-                    logger.debug("Password field detected, waiting for login completion.")
+                    logger.debug("Đã phát hiện trường mật khẩu, đang chờ hoàn tất đăng nhập.")
 
                 time.sleep(check_interval)
                 elapsed_time += check_interval
 
         except TimeoutException:
-            logger.error("Login form not found. Aborting login.")
+            logger.error("Không tìm thấy biểu mẫu đăng nhập. Hủy bỏ đăng nhập.")
 
 
     def handle_security_check(self):
+        # Xử lý kiểm tra bảo mật nếu cần
         try:
-            logger.debug("Handling security check...")
+            logger.debug("Xử lý kiểm tra bảo mật...")
             WebDriverWait(self.driver, 10).until(
                 EC.url_contains('https://www.linkedin.com/checkpoint/challengesV2/')
             )
-            logger.warning("Security checkpoint detected. Please complete the challenge.")
+            logger.warning("Đã phát hiện điểm kiểm tra bảo mật. Vui lòng hoàn thành thử thách.")
             WebDriverWait(self.driver, 300).until(
                 EC.url_contains('https://www.linkedin.com/feed/')
             )
-            logger.info("Security check completed")
+            logger.info("Kiểm tra bảo mật đã hoàn tất")
         except TimeoutException:
-            logger.error("Security check not completed. Please try again later.")
+            logger.error("Kiểm tra bảo mật chưa hoàn tất. Vui lòng thử lại sau.")
 
     def is_logged_in(self):
+        # Kiểm tra xem người dùng đã đăng nhập chưa
         try:
             self.driver.get('https://www.linkedin.com/feed')
-            logger.debug("Checking if user is logged in...")
+            logger.debug("Kiểm tra xem người dùng đã đăng nhập chưa...")
             WebDriverWait(self.driver, 3).until(
                 EC.presence_of_element_located((By.CLASS_NAME, 'share-box-feed-entry__trigger'))
             )
 
-            # Check for the presence of the "Start a post" button
+            # Kiểm tra sự hiện diện của nút "Bắt đầu bài đăng"
             buttons = self.driver.find_elements(By.CLASS_NAME, 'share-box-feed-entry__trigger')
-            logger.debug(f"Found {len(buttons)} 'Start a post' buttons")
+            logger.debug(f"Đã tìm thấy {len(buttons)} nút 'Bắt đầu bài đăng'")
 
             for i, button in enumerate(buttons):
-                logger.debug(f"Button {i + 1} text: {button.text.strip()}")
+                logger.debug(f"Nút {i + 1} có nội dung: {button.text.strip()}")
 
             if any(button.text.strip().lower() == 'start a post' for button in buttons):
-                logger.info("Found 'Start a post' button indicating user is logged in.")
+                logger.info("Đã tìm thấy nút 'Bắt đầu bài đăng' cho thấy người dùng đã đăng nhập.")
                 return True
 
             profile_img_elements = self.driver.find_elements(By.XPATH, "//img[contains(@alt, 'Photo of')]")
             if profile_img_elements:
-                logger.info("Profile image found. Assuming user is logged in.")
+                logger.info("Đã tìm thấy ảnh hồ sơ. Giả định người dùng đã đăng nhập.")
                 return True
 
-            logger.info("Did not find 'Start a post' button or profile image. User might not be logged in.")
+            logger.info("Không tìm thấy nút 'Bắt đầu bài đăng' hoặc ảnh hồ sơ. Người dùng có thể chưa đăng nhập.")
             return False
 
         except TimeoutException:
-            logger.error("Page elements took too long to load or were not found.")
+            logger.error("Các phần tử trang mất quá nhiều thời gian để tải hoặc không được tìm thấy.")
             return False
