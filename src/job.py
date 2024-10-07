@@ -1,48 +1,53 @@
+# Import các thư viện cần thiết
 from dataclasses import dataclass
 
 from loguru import logger
 
 
+# Định nghĩa lớp Job sử dụng dataclass để tự động tạo các phương thức __init__, __repr__, __eq__, v.v.
 @dataclass
 class Job:
-    title: str
-    company: str
-    location: str
-    link: str
-    apply_method: str
-    description: str = ""
-    summarize_job_description: str = ""
-    pdf_path: str = ""
-    recruiter_link: str = ""
+    title: str  # Tiêu đề công việc
+    company: str  # Tên công ty
+    location: str  # Địa điểm làm việc
+    link: str  # Liên kết đến thông tin công việc
+    apply_method: str  # Phương thức ứng tuyển
+    description: str = ""  # Mô tả công việc (mặc định là chuỗi rỗng)
+    summarize_job_description: str = ""  # Tóm tắt mô tả công việc (mặc định là chuỗi rỗng)
+    pdf_path: str = ""  # Đường dẫn đến file PDF (nếu có)
+    recruiter_link: str = ""  # Liên kết đến hồ sơ người tuyển dụng (nếu có)
 
     def set_summarize_job_description(self, summarize_job_description):
-        logger.debug(f"Setting summarized job description: {summarize_job_description}")
+        # Phương thức để cập nhật tóm tắt mô tả công việc
+        logger.debug(f"Đang cập nhật tóm tắt mô tả công việc: {summarize_job_description}")
         self.summarize_job_description = summarize_job_description
 
     def set_job_description(self, description):
-        logger.debug(f"Setting job description: {description}")
+        # Phương thức để cập nhật mô tả công việc đầy đủ
+        logger.debug(f"Đang cập nhật mô tả công việc: {description}")
         self.description = description
 
     def set_recruiter_link(self, recruiter_link):
-        logger.debug(f"Setting recruiter link: {recruiter_link}")
+        # Phương thức để cập nhật liên kết đến hồ sơ người tuyển dụng
+        logger.debug(f"Đang cập nhật liên kết người tuyển dụng: {recruiter_link}")
         self.recruiter_link = recruiter_link
 
     def formatted_job_information(self):
         """
-        Formats the job information as a markdown string.
+        Định dạng thông tin công việc dưới dạng chuỗi markdown.
         """
-        logger.debug(f"Formatting job information for job: {self.title} at {self.company}")
+        logger.debug(f"Đang định dạng thông tin công việc cho: {self.title} tại {self.company}")
         job_information = f"""
-        # Job Description
-        ## Job Information 
-        - Position: {self.title}
-        - At: {self.company}
-        - Location: {self.location}
-        - Recruiter Profile: {self.recruiter_link or 'Not available'}
+        # Mô tả công việc
+        ## Thông tin công việc 
+        - Vị trí: {self.title}
+        - Tại: {self.company}
+        - Địa điểm: {self.location}
+        - Hồ sơ người tuyển dụng: {self.recruiter_link or 'Không có sẵn'}
         
-        ## Description
-        {self.description or 'No description provided.'}
+        ## Mô tả
+        {self.description or 'Không có mô tả được cung cấp.'}
         """
         formatted_information = job_information.strip()
-        logger.debug(f"Formatted job information: {formatted_information}")
+        logger.debug(f"Thông tin công việc đã được định dạng: {formatted_information}")
         return formatted_information

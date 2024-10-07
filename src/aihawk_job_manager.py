@@ -244,7 +244,9 @@ class AIHawkJobManager:
         for job in job_list:
 
             logger.debug(f"Bắt đầu ứng tuyển cho công việc: {job.title} tại {job.company}")
-            #TODO fix apply threshold
+            #TODO fix apply threshold 
+            # sửa ngưỡng áp dụng
+
             """
                 # Initialize applicants_count as None
                 applicants_count = None
@@ -297,7 +299,6 @@ class AIHawkJobManager:
             # Continue with the job application process regardless of the applicants count check
             """
         
-
             if self.is_blacklisted(job.title, job.company, job.link):
                 logger.debug(f"Công việc trong danh sách đen: {job.title} tại {job.company}")
                 self.write_to_file(job, "skipped")
@@ -355,8 +356,7 @@ class AIHawkJobManager:
         url_parts = []
         if parameters['remote']:
             url_parts.append("f_CF=f_WRA")
-        experience_levels = [str(i + 1) for i, (level, v) in enumerate(parameters.get('experience_level', {}).items()) if
-                             v]
+        experience_levels = [str(i + 1) for i, (level, v) in enumerate(parameters.get('experience_level', {}).items()) if v]
         if experience_levels:
             url_parts.append(f"f_E={','.join(experience_levels)}")
         url_parts.append(f"distance={parameters['distance']}")

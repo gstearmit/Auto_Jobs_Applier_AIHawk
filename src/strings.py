@@ -1,413 +1,432 @@
-# Personal Information Template
+# Mẫu thông tin cá nhân
 personal_information_template = """
-Answer the following question based on the provided personal information.
+Trả lời câu hỏi sau dựa trên thông tin cá nhân được cung cấp.
 
-## Rules
-- Answer questions directly.
+## Quy tắc
+- Trả lời câu hỏi trực tiếp.
 
-## Example
-My resume: John Doe, born on 01/01/1990, living in Milan, Italy.
-Question: What is your city?
+## Ví dụ
+Sơ yếu lý lịch của tôi: John Doe, sinh ngày 01/01/1990, sống tại Milan, Ý.
+Câu hỏi: Thành phố của bạn là gì?
  Milan
 
-Personal Information: {resume_section}
-Question: {question}
+Thông tin cá nhân: {resume_section}
+Câu hỏi: {question}
 """
 
-# Self Identification Template
+# Mẫu tự nhận dạng
 self_identification_template = """
-Answer the following question based on the provided self-identification details.
+Trả lời câu hỏi sau dựa trên chi tiết tự nhận dạng được cung cấp.
 
-## Rules
-- Answer questions directly.
+## Quy tắc
+- Trả lời câu hỏi trực tiếp.
 
-## Example
-My resume: Male, uses he/him pronouns, not a veteran, no disability.
-Question: What are your gender?
-Male
+## Ví dụ
+Sơ yếu lý lịch của tôi: Nam, sử dụng đại từ anh ấy/của anh ấy, không phải cựu chiến binh, không có khuyết tật.
+Câu hỏi: Giới tính của bạn là gì?
+Nam
 
-Self-Identification: {resume_section}
-Question: {question}
+Tự nhận dạng: {resume_section}
+Câu hỏi: {question}
 """
 
-# Legal Authorization Template
+# Mẫu ủy quyền pháp lý
 legal_authorization_template = """
-Answer the following question based on the provided legal authorization details.
+Trả lời câu hỏi sau dựa trên chi tiết ủy quyền pháp lý được cung cấp.
 
-## Rules
-- Answer questions directly.
+## Quy tắc
+- Trả lời câu hỏi trực tiếp.
 
-## Example
-My resume: Authorized to work in the EU, no US visa required.
-Question: Are you legally allowed to work in the EU?
-Yes
+## Ví dụ
+Sơ yếu lý lịch của tôi: Được phép làm việc tại EU, không cần visa Mỹ.
+Câu hỏi: Bạn có được phép làm việc hợp pháp tại EU không?
+Có
 
-Legal Authorization: {resume_section}
-Question: {question}
+Ủy quyền pháp lý: {resume_section}
+Câu hỏi: {question}
 """
 
-# Work Preferences Template
+# Mẫu sở thích làm việc
 work_preferences_template = """
-Answer the following question based on the provided work preferences.
+Trả lời câu hỏi sau dựa trên sở thích làm việc được cung cấp.
 
-## Rules
-- Answer questions directly.
+## Quy tắc
+- Trả lời câu hỏi trực tiếp.
 
-## Example
-My resume: Open to remote work, willing to relocate.
-Question: Are you open to remote work?
-Yes
+## Ví dụ
+Sơ yếu lý lịch của tôi: Sẵn sàng làm việc từ xa, sẵn sàng di chuyển.
+Câu hỏi: Bạn có sẵn sàng làm việc từ xa không?
+Có
 
-Work Preferences: {resume_section}
-Question: {question}
+Sở thích làm việc: {resume_section}
+Câu hỏi: {question}
 """
 
-# Education Details Template
+# Mẫu chi tiết giáo dục
 education_details_template = """
-Answer the following question based on the provided education details.
+Trả lời câu hỏi sau dựa trên chi tiết giáo dục được cung cấp.
 
-## Rules
-- Answer questions directly.
-- If it seems likely that you have the experience, even if not explicitly defined, answer as if you have the experience.
-- If unsure, respond with "I have no experience with that, but I learn fast" or "Not yet, but willing to learn."
-- Keep the answer under 140 characters.
+## Quy tắc
+- Trả lời câu hỏi trực tiếp.
+- Nếu có vẻ như bạn có kinh nghiệm, ngay cả khi không được định nghĩa rõ ràng, hãy trả lời như thể bạn có kinh nghiệm.
+- Nếu không chắc chắn, hãy trả lời "Tôi không có kinh nghiệm về điều đó, nhưng tôi học nhanh" hoặc "Chưa, nhưng sẵn sàng học hỏi."
+- Giữ câu trả lời dưới 140 ký tự.
 
-## Example
-My resume: Bachelor's degree in Computer Science with experience in Python.
-Question: Do you have experience with Python?
-Yes, I have experience with Python.
+## Ví dụ
+Sơ yếu lý lịch của tôi: Bằng cử nhân Khoa học Máy tính với kinh nghiệm về Python.
+Câu hỏi: Bạn có kinh nghiệm với Python không?
+Có, tôi có kinh nghiệm với Python.
 
-Education Details: {resume_section}
-Question: {question}
+Chi tiết giáo dục: {resume_section}
+Câu hỏi: {question}
 """
 
-# Experience Details Template
+# Mẫu chi tiết kinh nghiệm
 experience_details_template = """
-Answer the following question based on the provided experience details.
+Trả lời câu hỏi sau dựa trên chi tiết kinh nghiệm được cung cấp.
 
-## Rules
-- Answer questions directly.
-- If it seems likely that you have the experience, even if not explicitly defined, answer as if you have the experience.
-- If unsure, respond with "I have no experience with that, but I learn fast" or "Not yet, but willing to learn."
-- Keep the answer under 140 characters.
+## Quy tắc
+- Trả lời câu hỏi trực tiếp.
+- Nếu có vẻ như bạn có kinh nghiệm, ngay cả khi không được định nghĩa rõ ràng, hãy trả lời như thể bạn có kinh nghiệm.
+- Nếu không chắc chắn, hãy trả lời "Tôi không có kinh nghiệm về điều đó, nhưng tôi học nhanh" hoặc "Chưa, nhưng sẵn sàng học hỏi."
+- Giữ câu trả lời dưới 140 ký tự.
 
-## Example
-My resume: 3 years as a software developer with leadership experience.
-Question: Do you have leadership experience?
-Yes, I have 3 years of leadership experience.
+## Ví dụ
+Sơ yếu lý lịch của tôi: 3 năm làm nhà phát triển phần mềm với kinh nghiệm lãnh đạo.
+Câu hỏi: Bạn có kinh nghiệm lãnh đạo không?
+Có, tôi có 3 năm kinh nghiệm lãnh đạo.
 
-Experience Details: {resume_section}
-Question: {question}
+Chi tiết kinh nghiệm: {resume_section}
+Câu hỏi: {question}
 """
 
-# Projects Template
+# Mẫu dự án
 projects_template = """
-Answer the following question based on the provided project details.
+Trả lời câu hỏi sau dựa trên chi tiết dự án được cung cấp.
 
-## Rules
-- Answer questions directly.
-- If it seems likely that you have the experience, even if not explicitly defined, answer as if you have the experience.
-- Keep the answer under 140 characters.
+## Quy tắc
+- Trả lời câu hỏi trực tiếp.
+- Nếu có vẻ như bạn có kinh nghiệm, ngay cả khi không được định nghĩa rõ ràng, hãy trả lời như thể bạn có kinh nghiệm.
+- Giữ câu trả lời dưới 140 ký tự.
 
-## Example
-My resume: Led the development of a mobile app, repository available.
-Question: Have you led any projects?
-Yes, led the development of a mobile app
+## Ví dụ
+Sơ yếu lý lịch của tôi: Dẫn dắt việc phát triển một ứng dụng di động, có sẵn kho lưu trữ.
+Câu hỏi: Bạn đã từng dẫn dắt dự án nào chưa?
+Có, đã dẫn dắt việc phát triển một ứng dụng di động
 
-Projects: {resume_section}
-Question: {question}
+Dự án: {resume_section}
+Câu hỏi: {question}
 """
 
-# Availability Template
+# Mẫu tính khả dụng
 availability_template = """
-Answer the following question based on the provided availability details.
+Trả lời câu hỏi sau dựa trên chi tiết tính khả dụng được cung cấp.
 
-## Rules
-- Answer questions directly.
-- Keep the answer under 140 characters.
-- Use periods only if the answer has multiple sentences.
+## Quy tắc
+- Trả lời câu hỏi trực tiếp.
+- Giữ câu trả lời dưới 140 ký tự.
+- Chỉ sử dụng dấu chấm nếu câu trả lời có nhiều câu.
 
-## Example
-My resume: Available to start immediately.
-Question: When can you start?
-I can start immediately.
+## Ví dụ
+Sơ yếu lý lịch của tôi: Có thể bắt đầu ngay lập tức.
+Câu hỏi: Khi nào bạn có thể bắt đầu?
+Tôi có thể bắt đầu ngay lập tức.
 
-Availability: {resume_section}
-Question: {question}
+Tính khả dụng: {resume_section}
+Câu hỏi: {question}
 """
 
-# Salary Expectations Template
+# Mẫu kỳ vọng lương
 salary_expectations_template = """
-Answer the following question based on the provided salary expectations.
+Trả lời câu hỏi sau dựa trên kỳ vọng lương được cung cấp.
 
-## Rules
-- Answer questions directly.
-- Keep the answer under 140 characters.
-- Use periods only if the answer has multiple sentences.
+## Quy tắc
+- Trả lời câu hỏi trực tiếp.
+- Giữ câu trả lời dưới 140 ký tự.
+- Chỉ sử dụng dấu chấm nếu câu trả lời có nhiều câu.
 
-## Example
-My resume: Looking for a salary in the range of 50k-60k USD.
-Question: What are your salary expectations?
+## Ví dụ
+Sơ yếu lý lịch của tôi: Đang tìm kiếm mức lương trong khoảng 50k-60k USD.
+Câu hỏi: Kỳ vọng lương của bạn là gì?
 55000.
 
-Salary Expectations: {resume_section}
-Question: {question}
+Kỳ vọng lương: {resume_section}
+Câu hỏi: {question}
 """
 
-# Certifications Template
+# Mẫu chứng chỉ
 certifications_template = """
-Answer the following question based on the provided certifications.
+Trả lời câu hỏi sau dựa trên chứng chỉ được cung cấp.
 
-## Rules
-- Answer questions directly.
-- If it seems likely that you have the experience, even if not explicitly defined, answer as if you have the experience.
-- If unsure, respond with "I have no experience with that, but I learn fast" or "Not yet, but willing to learn."
-- Keep the answer under 140 characters.
+## Quy tắc
+- Trả lời câu hỏi trực tiếp.
+- Nếu có vẻ như bạn có kinh nghiệm, ngay cả khi không được định nghĩa rõ ràng, hãy trả lời như thể bạn có kinh nghiệm.
+- Nếu không chắc chắn, hãy trả lời "Tôi không có kinh nghiệm về điều đó, nhưng tôi học nhanh" hoặc "Chưa, nhưng sẵn sàng học hỏi."
+- Giữ câu trả lời dưới 140 ký tự.
 
-## Example
-My resume: Certified in Project Management Professional (PMP).
-Question: Do you have PMP certification?
-Yes, I am PMP certified.
+## Ví dụ
+Sơ yếu lý lịch của tôi: Được chứng nhận Quản lý Dự án Chuyên nghiệp (PMP).
+Câu hỏi: Bạn có chứng chỉ PMP không?
+Có, tôi được chứng nhận PMP.
 
-Certifications: {resume_section}
-Question: {question}
+Chứng chỉ: {resume_section}
+Câu hỏi: {question}
 """
 
-# Languages Template
+# Mẫu ngôn ngữ
 languages_template = """
-Answer the following question based on the provided language skills.
+Trả lời câu hỏi sau dựa trên kỹ năng ngôn ngữ được cung cấp.
 
-## Rules
-- Answer questions directly.
-- If it seems likely that you have the experience, even if not explicitly defined, answer as if you have the experience.
-- If unsure, respond with "I have no experience with that, but I learn fast" or "Not yet, but willing to learn."
-- Keep the answer under 140 characters. Do not add any additional languages what is not in my experience
+## Quy tắc
+- Trả lời câu hỏi trực tiếp.
+- Nếu có vẻ như bạn có kinh nghiệm, ngay cả khi không được định nghĩa rõ ràng, hãy trả lời như thể bạn có kinh nghiệm.
+- Nếu không chắc chắn, hãy trả lời "Tôi không có kinh nghiệm về điều đó, nhưng tôi học nhanh" hoặc "Chưa, nhưng sẵn sàng học hỏi."
+- Giữ câu trả lời dưới 140 ký tự. Không thêm bất kỳ ngôn ngữ nào không có trong kinh nghiệm của tôi
 
-## Example
-My resume: Fluent in Italian and English.
-Question: What languages do you speak?
-Fluent in Italian and English.
+## Ví dụ
+Sơ yếu lý lịch của tôi: Thông thạo tiếng Ý và tiếng Anh.
+Câu hỏi: Bạn nói những ngôn ngữ nào?
+Thông thạo tiếng Ý và tiếng Anh.
 
-Languages: {resume_section}
-Question: {question}
+Ngôn ngữ: {resume_section}
+Câu hỏi: {question}
 """
 
-# Interests Template
+# Mẫu sở thích
 interests_template = """
-Answer the following question based on the provided interests.
+Trả lời câu hỏi sau dựa trên sở thích được cung cấp.
 
-## Rules
-- Answer questions directly.
-- Keep the answer under 140 characters.
-- Use periods only if the answer has multiple sentences.
+## Quy tắc
+- Trả lời câu hỏi trực tiếp.
+- Giữ câu trả lời dưới 140 ký tự.
+- Chỉ sử dụng dấu chấm nếu câu trả lời có nhiều câu.
 
-## Example
-My resume: Interested in AI and data science.
-Question: What are your interests?
-AI and data science.
+## Ví dụ
+Sơ yếu lý lịch của tôi: Quan tâm đến AI và khoa học dữ liệu.
+Câu hỏi: Sở thích của bạn là gì?
+AI và khoa học dữ liệu.
 
-Interests: {resume_section}
-Question: {question}
+Sở thích: {resume_section}
+Câu hỏi: {question}
 """
 
+# Mẫu tóm tắt mô tả công việc
 summarize_prompt_template = """
-As a seasoned HR expert, your task is to identify and outline the key skills and requirements necessary for the position of this job. Use the provided job description as input to extract all relevant information. This will involve conducting a thorough analysis of the job's responsibilities and the industry standards. You should consider both the technical and soft skills needed to excel in this role. Additionally, specify any educational qualifications, certifications, or experiences that are essential. Your analysis should also reflect on the evolving nature of this role, considering future trends and how they might affect the required competencies.
+Với tư cách là một chuyên gia HR giàu kinh nghiệm, nhiệm vụ của bạn là xác định và phác thảo các kỹ năng và yêu cầu chính cần thiết cho vị trí công việc này. 
+Sử dụng mô tả công việc được cung cấp làm đầu vào để trích xuất tất cả thông tin liên quan. 
+Điều này sẽ liên quan đến việc phân tích kỹ lưỡng trách nhiệm công việc và tiêu chuẩn ngành. 
+Bạn nên xem xét cả kỹ năng kỹ thuật và kỹ năng mềm cần thiết để xuất sắc trong vai trò này. 
+Ngoài ra, hãy chỉ rõ bất kỳ bằng cấp, chứng chỉ hoặc kinh nghiệm nào là cần thiết. 
+Phân tích của bạn cũng nên phản ánh bản chất phát triển của vai trò này, xem xét xu hướng tương lai và cách chúng có thể ảnh hưởng đến các năng lực cần thiết.
 
-Rules:
-Remove boilerplate text
-Include only relevant information to match the job description against the resume
+Quy tắc:
+Loại bỏ văn bản mẫu
+Chỉ bao gồm thông tin liên quan để so sánh mô tả công việc với sơ yếu lý lịch
 
-# Analysis Requirements
-Your analysis should include the following sections:
-Technical Skills: List all the specific technical skills required for the role based on the responsibilities described in the job description.
-Soft Skills: Identify the necessary soft skills, such as communication abilities, problem-solving, time management, etc.
-Educational Qualifications and Certifications: Specify the essential educational qualifications and certifications for the role.
-Professional Experience: Describe the relevant work experiences that are required or preferred.
-Role Evolution: Analyze how the role might evolve in the future, considering industry trends and how these might influence the required skills.
+# Yêu cầu phân tích
+Phân tích của bạn nên bao gồm các phần sau:
+Kỹ năng kỹ thuật: Liệt kê tất cả các kỹ năng kỹ thuật cụ thể cần thiết cho vai trò dựa trên trách nhiệm được mô tả trong mô tả công việc.
+Kỹ năng mềm: Xác định các kỹ năng mềm cần thiết, chẳng hạn như khả năng giao tiếp, giải quyết vấn đề, quản lý thời gian, v.v.
+Bằng cấp và Chứng chỉ: Chỉ rõ các bằng cấp và chứng chỉ cần thiết cho vai trò.
+Kinh nghiệm chuyên môn: Mô tả các kinh nghiệm làm việc liên quan được yêu cầu hoặc ưu tiên.
+Sự phát triển của vai trò: Phân tích cách vai trò có thể phát triển trong tương lai, xem xét xu hướng ngành và cách chúng có thể ảnh hưởng đến các kỹ năng cần thiết.
 
-# Final Result:
-Your analysis should be structured in a clear and organized document with distinct sections for each of the points listed above. Each section should contain:
-This comprehensive overview will serve as a guideline for the recruitment process, ensuring the identification of the most qualified candidates.
+# Kết quả cuối cùng:
+Phân tích của bạn nên được cấu trúc trong một tài liệu rõ ràng và có tổ chức với các phần riêng biệt cho mỗi điểm được liệt kê ở trên. Mỗi phần nên chứa:
+Tổng quan toàn diện này sẽ đóng vai trò như một hướng dẫn cho quá trình tuyển dụng, đảm bảo xác định được các ứng viên có trình độ cao nhất.
 
-# Job Description:
+# Mô tả công việc:
 ```
 {text}
 ```
 
 ---
 
-# Job Description Summary"""
+# Tóm tắt mô tả công việc"""
 
+# Mẫu thư xin việc
 coverletter_template = """
-Compose a brief and impactful cover letter based on the provided job description and resume. The letter should be no longer than three paragraphs and should be written in a professional, yet conversational tone. Avoid using any placeholders, and ensure that the letter flows naturally and is tailored to the job.
+# Soạn thảo một bức thư xin việc ngắn gọn và ấn tượng dựa trên mô tả công việc và sơ yếu lý lịch được cung cấp. 
+# Bức thư không nên dài quá ba đoạn và nên được viết theo phong cách chuyên nghiệp nhưng gần gũi. 
+# Tránh sử dụng bất kỳ chỗ trống nào và đảm bảo rằng bức thư chảy tự nhiên và được điều chỉnh cho công việc.
 
-Analyze the job description to identify key qualifications and requirements. Introduce the candidate succinctly, aligning their career objectives with the role. Highlight relevant skills and experiences from the resume that directly match the job’s demands, using specific examples to illustrate these qualifications. Reference notable aspects of the company, such as its mission or values, that resonate with the candidate’s professional goals. Conclude with a strong statement of why the candidate is a good fit for the position, expressing a desire to discuss further.
+# Phân tích mô tả công việc để xác định các tiêu chí và yêu cầu chính. 
+# Giới thiệu ngắn gọn về ứng viên, liên kết mục tiêu nghề nghiệp của họ với vai trò. 
+# Nêu bật các kỹ năng và kinh nghiệm liên quan từ sơ yếu lý lịch mà phù hợp trực tiếp với yêu cầu của công việc, 
+# sử dụng các ví dụ cụ thể để minh họa những tiêu chí này. 
+# Tham chiếu đến các khía cạnh nổi bật của công ty, chẳng hạn như sứ mệnh hoặc giá trị, 
+# mà ứng viên cảm thấy phù hợp với mục tiêu nghề nghiệp của họ. 
+# Kết thúc bằng một tuyên bố mạnh mẽ về lý do tại sao ứng viên là sự phù hợp tốt cho vị trí, 
+# thể hiện mong muốn thảo luận thêm.
 
-Please write the cover letter in a way that directly addresses the job role and the company’s characteristics, ensuring it remains concise and engaging without unnecessary embellishments. The letter should be formatted into paragraphs and should not include a greeting or signature.
+# Vui lòng viết bức thư xin việc theo cách trực tiếp đề cập đến vai trò công việc và đặc điểm của công ty, 
+# đảm bảo rằng nó vẫn ngắn gọn và hấp dẫn mà không có những trang trí không cần thiết. 
+# Bức thư nên được định dạng thành các đoạn và không bao gồm lời chào hoặc chữ ký.
 
-## Rules:
-- Provide only the text of the cover letter.
-- Do not include any introductions, explanations, or additional information.
-- The letter should be formatted into paragraph.
+## Quy tắc:
+# - Chỉ cung cấp văn bản của bức thư xin việc.
+# - Không bao gồm bất kỳ lời giới thiệu, giải thích hoặc thông tin bổ sung nào.
+# - Bức thư nên được định dạng thành các đoạn.
 
-## Job Description:
+## Mô tả công việc:
 ```
 {job_description}
 ```
-## My resume:
+## Sơ yếu lý lịch của tôi:
 ```
 {resume}
 ```
 """
 
+# Mẫu câu hỏi số cho phép đọc kỹ sơ yếu lý lịch và trả lời các câu hỏi cụ thể liên quan đến kinh nghiệm của ứng viên với số năm.
 numeric_question_template = """
-Read the following resume carefully and answer the specific questions regarding the candidate's experience with a number of years. Follow these strategic guidelines when responding:
+Đọc kỹ sơ yếu lý lịch sau và trả lời các câu hỏi cụ thể liên quan đến kinh nghiệm của ứng viên với số năm. Làm theo các hướng dẫn chiến lược này khi phản hồi:
 
-1. **Related and Inferred Experience:**
-   - **Similar Technologies:** If experience with a specific technology is not explicitly stated, but the candidate has experience with similar or related technologies, provide a plausible number of years reflecting this related experience. For instance, if the candidate has experience with Python and projects involving technologies similar to Java, estimate a reasonable number of years for Java.
-   - **Projects and Studies:** Examine the candidate’s projects and studies to infer skills not explicitly mentioned. Complex and advanced projects often indicate deeper expertise.
+1. **Kinh nghiệm liên quan và suy luận:**
+   - **Công nghệ tương tự:** Nếu kinh nghiệm với một công nghệ cụ thể không được nêu rõ, nhưng ứng viên có kinh nghiệm với các công nghệ tương tự hoặc liên quan, hãy cung cấp một số năm hợp lý phản ánh kinh nghiệm liên quan này. Ví dụ, nếu ứng viên có kinh nghiệm với Python và các dự án liên quan đến các công nghệ tương tự như Java, hãy ước lượng một số năm hợp lý cho Java.
+   - **Dự án và nghiên cứu:** Xem xét các dự án và nghiên cứu của ứng viên để suy luận các kỹ năng không được nêu rõ. Các dự án phức tạp và tiên tiến thường chỉ ra chuyên môn sâu hơn.
 
-2. **Indirect Experience and Academic Background:**
-   - **Type of University and Studies:** Consider the type of university and course followed.
-   - **Exam Grades:** Consider exam grades achieved. High grades in relevant subjects can indicate stronger proficiency and understanding.
-   - **Relevant thesis:** Consider the thesis of the candidate has worked. Advanced projects suggest deeper skills.
-   - **Roles and Responsibilities:** Evaluate the roles and responsibilities held to estimate experience with specific technologies or skills.
+2. **Kinh nghiệm gián tiếp và nền tảng học vấn:**
+   - **Loại trường đại học và ngành học:** Xem xét loại trường đại học và khóa học đã theo học.
+   - **Điểm thi:** Xem xét điểm thi đạt được. Điểm cao trong các môn học liên quan có thể chỉ ra khả năng và hiểu biết mạnh mẽ hơn.
+   - **Luận văn liên quan:** Xem xét luận văn mà ứng viên đã thực hiện. Các dự án tiên tiến gợi ý kỹ năng sâu hơn.
+   - **Vai trò và trách nhiệm:** Đánh giá các vai trò và trách nhiệm đã đảm nhận để ước lượng kinh nghiệm với các công nghệ hoặc kỹ năng cụ thể.
 
+3. **Ước lượng kinh nghiệm:**
+   - **Không có kinh nghiệm bằng 0:** Phản hồi "0" là hoàn toàn bị cấm. Nếu không thể xác nhận kinh nghiệm trực tiếp, hãy cung cấp tối thiểu "2" năm dựa trên kinh nghiệm suy luận hoặc liên quan.
+   - **Đối với kinh nghiệm thấp (tối đa 5 năm):** Ước lượng kinh nghiệm dựa trên bằng cấp, kỹ năng và dự án đã thực hiện, luôn cung cấp ít nhất "2" năm khi có liên quan.
+   - **Đối với kinh nghiệm cao:** Đối với các mức độ kinh nghiệm cao, hãy cung cấp một số dựa trên bằng chứng rõ ràng từ sơ yếu lý lịch. Tránh đưa ra suy luận cho các mức độ kinh nghiệm cao trừ khi bằng chứng là mạnh mẽ.
 
-3. **Experience Estimates:**
-   - **No Zero Experience:** A response of "0" is absolutely forbidden. If direct experience cannot be confirmed, provide a minimum of "2" years based on inferred or related experience.
-   - **For Low Experience (up to 5 years):** Estimate experience based on inferred bacherol, skills and projects, always providing at least "2" years when relevant.
-   - **For High Experience:** For high levels of experience, provide a number based on clear evidence from the resume. Avoid making inferences for high experience levels unless the evidence is strong.
+4. **Quy tắc:**
+   - Trả lời câu hỏi trực tiếp bằng một số, tránh hoàn toàn "0".
 
-4. **Rules:**
-   - Answer the question directly with a number, avoiding "0" entirely.
-
-## Example 1
+## Ví dụ 1
 ```
-## Curriculum
+## Chương trình học
 
-I had a degree in computer science. I have worked  years with  MQTT protocol.
+# Đã có bằng cử nhân ngành khoa học máy tính. 
+# Tôi đã làm việc trong nhiều năm với giao thức MQTT.
 
-## Question
+## Câu hỏi
 
-How many years of experience do you have with IoT?
+# Bạn có bao nhiêu năm kinh nghiệm với IoT?
 
-## Answer
+## Câu trả lời
 
-4
+# 4
 ```
-## Example 1
+## Ví dụ 1
 ```
-## Curriculum
+## Chương trình học
 
-I had a degree in computer science. 
+Tôi đã có bằng cử nhân ngành khoa học máy tính.
 
-## Question
+## Câu hỏi
 
-How many years of experience do you have with Bash?
+Bạn có bao nhiêu năm kinh nghiệm với Bash?
 
-## Answer
+## Câu trả lời
 
-2
-```
-
-## Example 2
-```
-## Curriculum
-
-I am a software engineer with 5 years of experience in Swift and Python. I have worked on an AI project.
-
-## Question
-
-How many years of experience do you have with AI?
-
-## Answer
-
-2
+5
 ```
 
-## Resume:
+## Ví dụ 2
+```
+## Chương trình học
+
+Tôi là một kỹ sư phần mềm với 10 năm kinh nghiệm trong Java và Python. Tôi đã làm việc trên một dự án AI.
+
+## Câu hỏi
+
+Bạn có bao nhiêu năm kinh nghiệm với AI?
+
+## Câu trả lời
+
+5
+```
+
+## Sơ yếu lý lịch:
 ```
 {resume_educations}
 {resume_jobs}
 {resume_projects}
 ```
         
-## Question:
+## Câu hỏi:
 {question}
 
 ---
 
-When responding, consider all available information, including projects, work experience, and academic background, to provide an accurate and well-reasoned answer. Make every effort to infer relevant experience and avoid defaulting to 0 if any related experience can be estimated.
+Khi trả lời, hãy xem xét tất cả thông tin có sẵn, bao gồm các dự án, kinh nghiệm làm việc và nền tảng học thuật, để cung cấp một câu trả lời chính xác và hợp lý. Hãy nỗ lực hết mình để suy luận kinh nghiệm liên quan và tránh mặc định về 0 nếu có thể ước lượng bất kỳ kinh nghiệm liên quan nào.
 
 """
 
-options_template = """The following is a resume and an answered question about the resume, the answer is one of the options.
+options_template = """Dưới đây là một sơ yếu lý lịch và một câu hỏi đã được trả lời về sơ yếu lý lịch, câu trả lời là một trong các tùy chọn.
 
-## Rules
-- Never choose the default/placeholder option, examples are: 'Select an option', 'None', 'Choose from the options below', etc.
-- The answer must be one of the options.
-- The answer must exclusively contain one of the options.
+## Quy tắc
+- Không bao giờ chọn tùy chọn mặc định/đặt chỗ, ví dụ: 'Chọn một tùy chọn', 'Không có', 'Chọn từ các tùy chọn bên dưới', v.v.
+- Câu trả lời phải là một trong các tùy chọn.
+- Câu trả lời phải chỉ chứa một trong các tùy chọn.
 
-## Example
-My resume: I'm a software engineer with 10 years of experience on swift, python, C, C++.
-Question: How many years of experience do you have on python?
-Options: [1-2, 3-5, 6-10, 10+]
+## Ví dụ
+Sơ yếu lý lịch của tôi: Tôi là một kỹ sư phần mềm với 10 năm kinh nghiệm về swift, python, C, C++.
+Câu hỏi: Bạn có bao nhiêu năm kinh nghiệm với python?
+Tùy chọn: [1-2, 3-5, 6-10, 10+]
 10+
 
 -----
 
-## My resume:
+## Sơ yếu lý lịch của tôi:
 ```
 {resume}
 ```
 
-## Question:
+## Câu hỏi:
 {question}
 
-## Options:
+## Tùy chọn:
 {options}
 
 ## """
 
 try_to_fix_template = """\
-The objective is to fix the text of a form input on a web page.
+Mục tiêu là sửa đổi văn bản của một trường nhập liệu trên một trang web.
 
-## Rules
-- Use the error to fix the original text.
-- The error "Please enter a valid answer" usually means the text is too large, shorten the reply to less than a tweet.
-- For errors like "Enter a whole number between 3 and 30", just need a number.
+## Quy tắc
+- Sử dụng lỗi để sửa văn bản gốc.
+- Lỗi "Vui lòng nhập một câu trả lời hợp lệ" thường có nghĩa là văn bản quá dài, hãy rút ngắn câu trả lời xuống dưới 1 tweet.
+- Đối với các lỗi như "Nhập một số nguyên giữa 3 và 30", chỉ cần một số.
 
 -----
 
-## Form Question
+## Câu hỏi của biểu mẫu
 {question}
 
-## Input
+## Nhập
 {input} 
 
-## Error
+## Lỗi
 {error}  
 
-## Fixed Input
+## Đầu vào đã sửa
 """
 
 func_summarize_prompt_template = """
-        Following are two texts, one with placeholders and one without, the second text uses information from the first text to fill the placeholders.
+        Dưới đây là hai văn bản, một văn bản có các chỗ giữ chỗ và một văn bản không có, văn bản thứ hai sử dụng thông tin từ văn bản đầu tiên để điền vào các chỗ giữ chỗ.
         
-        ## Rules
-        - A placeholder is a string like "[[placeholder]]". E.g. "[[company]]", "[[job_title]]", "[[years_of_experience]]"...
-        - The task is to remove the placeholders from the text.
-        - If there is no information to fill a placeholder, remove the placeholder, and adapt the text accordingly.
-        - No placeholders should remain in the text.
+        ## Quy tắc
+        - Một chỗ giữ chỗ là một chuỗi như "[[chỗ giữ chỗ]]". Ví dụ: "[[công_ty]]", "[[chức_vụ]]", "[[số_năm_kinh_nghiệm]]"...
+        - Nhiệm vụ là loại bỏ các chỗ giữ chỗ khỏi văn bản.
+        - Nếu không có thông tin để điền vào một chỗ giữ chỗ, hãy loại bỏ chỗ giữ chỗ và điều chỉnh văn bản cho phù hợp.
+        - Không có chỗ giữ chỗ nào nên còn lại trong văn bản.
         
-        ## Example
-        Text with placeholders: "I'm a software engineer engineer with 10 years of experience on [placeholder] and [placeholder]."
-        Text without placeholders: "I'm a software engineer with 10 years of experience."
+        ## Ví dụ
+        Văn bản có chỗ giữ chỗ: "Tôi là một kỹ sư phần mềm với 10 năm kinh nghiệm về [chỗ giữ chỗ] và [chỗ giữ chỗ]."
+        Văn bản không có chỗ giữ chỗ: "Tôi là một kỹ sư phần mềm với 10 năm kinh nghiệm."
         
         -----
         
-        ## Text with placeholders:
+        ## Văn bản có chỗ giữ chỗ:
         {text_with_placeholders}
         
-        ## Text without placeholders:"""
+        ## Văn bản không có chỗ giữ chỗ:"""

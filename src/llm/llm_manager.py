@@ -147,8 +147,7 @@ class LLMLogger:
         logger.debug(f"Phản hồi đã phân tích nhận được: {parsed_reply}")
 
         try:
-            calls_log = os.path.join(
-                Path("data_folder/output"), "open_ai_calls.json")
+            calls_log = os.path.join(Path("data_folder/output"), "open_ai_calls.json")
             logger.debug(f"Đường dẫn ghi log đã được xác định: {calls_log}")
         except Exception as e:
             logger.error(f"Lỗi khi xác định đường dẫn ghi log: {str(e)}")
@@ -355,9 +354,7 @@ class LoggerChatModel:
                 f"Lỗi không mong đợi khi phân tích kết quả LLM: {str(e)}")
             raise
 
-# Lớp chính để xử lý các câu hỏi và tạo câu trả lời từ GPT
-
-
+# Lớp chính để xử lý các câu hỏi và tạo câu trả lời từ GPT 
 class GPTAnswerer:
 
     def __init__(self, config, llm_api_key):
@@ -448,92 +445,93 @@ class GPTAnswerer:
             "interests": self._create_chain(strings.interests_template),
             "cover_letter": self._create_chain(strings.coverletter_template),
         }
-        section_prompt = """You are assisting a bot designed to automatically apply for jobs on AIHawk. The bot receives various questions about job applications and needs to determine the most relevant section of the resume to provide an accurate response.
+        
+        section_prompt = """Bạn đang hỗ trợ một bot được thiết kế để tự động ứng tuyển công việc trên AIHawk. Bot nhận được các câu hỏi khác nhau về đơn xin việc và cần xác định phần liên quan nhất của sơ yếu lý lịch để đưa ra câu trả lời chính xác.
 
-        For the following question: '{question}', determine which section of the resume is most relevant. 
-        Respond with exactly one of the following options:
-        - Personal information
-        - Self Identification
-        - Legal Authorization
-        - Work Preferences
-        - Education Details
-        - Experience Details
-        - Projects
-        - Availability
-        - Salary Expectations
-        - Certifications
-        - Languages
-        - Interests
-        - Cover letter
+        Đối với câu hỏi sau: '{question}', hãy xác định phần nào của sơ yếu lý lịch là liên quan nhất. 
+        Trả lời chính xác một trong các lựa chọn sau:
+        - Thông tin cá nhân
+        - Tự nhận dạng
+        - Ủy quyền pháp lý
+        - Sở thích công việc
+        - Chi tiết học vấn
+        - Chi tiết kinh nghiệm
+        - Dự án
+        - Khả năng làm việc
+        - Kỳ vọng lương
+        - Chứng chỉ
+        - Ngôn ngữ
+        - Sở thích
+        - Thư xin việc
 
-        Here are detailed guidelines to help you choose the correct section:
+        Dưới đây là hướng dẫn chi tiết để giúp bạn chọn đúng phần:
 
-        1. **Personal Information**:
-        - **Purpose**: Contains your basic contact details and online profiles.
-        - **Use When**: The question is about how to contact you or requests links to your professional online presence.
-        - **Examples**: Email address, phone number, AIHawk profile, GitHub repository, personal website.
+        1. **Thông tin cá nhân**:
+        - **Mục đích**: Chứa thông tin liên hệ cơ bản và hồ sơ trực tuyến của bạn.
+        - **Sử dụng khi**: Câu hỏi liên quan đến cách liên hệ với bạn hoặc yêu cầu liên kết đến sự hiện diện chuyên nghiệp trực tuyến của bạn.
+        - **Ví dụ**: Địa chỉ email, số điện thoại, hồ sơ AIHawk, kho lưu trữ GitHub, trang web cá nhân.
 
-        2. **Self Identification**:
-        - **Purpose**: Covers personal identifiers and demographic information.
-        - **Use When**: The question pertains to your gender, pronouns, veteran status, disability status, or ethnicity.
-        - **Examples**: Gender, pronouns, veteran status, disability status, ethnicity.
+        2. **Tự nhận dạng**:
+        - **Mục đích**: Bao gồm các định danh cá nhân và thông tin nhân khẩu học.
+        - **Sử dụng khi**: Câu hỏi liên quan đến giới tính, đại từ nhân xưng, tình trạng cựu chiến binh, tình trạng khuyết tật hoặc dân tộc của bạn.
+        - **Ví dụ**: Giới tính, đại từ nhân xưng, tình trạng cựu chiến binh, tình trạng khuyết tật, dân tộc.
 
-        3. **Legal Authorization**:
-        - **Purpose**: Details your work authorization status and visa requirements.
-        - **Use When**: The question asks about your ability to work in specific countries or if you need sponsorship or visas.
-        - **Examples**: Work authorization in EU and US, visa requirements, legally allowed to work.
+        3. **Ủy quyền pháp lý**:
+        - **Mục đích**: Chi tiết về tình trạng ủy quyền làm việc và yêu cầu visa của bạn.
+        - **Sử dụng khi**: Câu hỏi liên quan đến khả năng làm việc của bạn ở các quốc gia cụ thể hoặc nếu bạn cần tài trợ hoặc visa.
+        - **Ví dụ**: Ủy quyền làm việc tại EU và Hoa Kỳ, yêu cầu visa, được phép làm việc hợp pháp.
 
-        4. **Work Preferences**:
-        - **Purpose**: Specifies your preferences regarding work conditions and job roles.
-        - **Use When**: The question is about your preferences for remote work, in-person work, relocation, and willingness to undergo assessments or background checks.
-        - **Examples**: Remote work, in-person work, open to relocation, willingness to complete assessments.
+        4. **Sở thích công việc**:
+        - **Mục đích**: Chỉ rõ sở thích của bạn về điều kiện làm việc và vai trò công việc.
+        - **Sử dụng khi**: Câu hỏi liên quan đến sở thích của bạn về làm việc từ xa, làm việc trực tiếp, di chuyển và sẵn sàng tham gia đánh giá hoặc kiểm tra lý lịch.
+        - **Ví dụ**: Làm việc từ xa, làm việc trực tiếp, sẵn sàng di chuyển, sẵn sàng hoàn thành các đánh giá.
 
-        5. **Education Details**:
-        - **Purpose**: Contains information about your academic qualifications.
-        - **Use When**: The question concerns your degrees, universities attended, GPA, and relevant coursework.
-        - **Examples**: Degree, university, GPA, field of study, exams.
+        5. **Chi tiết học vấn**:
+        - **Mục đích**: Chứa thông tin về trình độ học vấn của bạn.
+        - **Sử dụng khi**: Câu hỏi liên quan đến bằng cấp, trường đại học đã học, điểm trung bình và các khóa học liên quan.
+        - **Ví dụ**: Bằng cấp, trường đại học, điểm trung bình, lĩnh vực học tập, kỳ thi.
 
-        6. **Experience Details**:
-        - **Purpose**: Details your professional work history and key responsibilities.
-        - **Use When**: The question pertains to your job roles, responsibilities, and achievements in previous positions.
-        - **Examples**: Job positions, company names, key responsibilities, skills acquired.
+        6. **Chi tiết kinh nghiệm**:
+        - **Mục đích**: Chi tiết về lịch sử làm việc chuyên nghiệp và trách nhiệm chính của bạn.
+        - **Sử dụng khi**: Câu hỏi liên quan đến vai trò công việc, trách nhiệm và thành tích của bạn trong các vị trí trước đây.
+        - **Ví dụ**: Vị trí công việc, tên công ty, trách nhiệm chính, kỹ năng đã đạt được.
 
-        7. **Projects**:
-        - **Purpose**: Highlights specific projects you have worked on.
-        - **Use When**: The question asks about particular projects, their descriptions, or links to project repositories.
-        - **Examples**: Project names, descriptions, links to project repositories.
+        7. **Dự án**:
+        - **Mục đích**: Nêu bật các dự án cụ thể mà bạn đã làm việc.
+        - **Sử dụng khi**: Câu hỏi liên quan đến các dự án cụ thể, mô tả về chúng hoặc liên kết đến kho lưu trữ dự án.
+        - **Ví dụ**: Tên dự án, mô tả, liên kết đến kho lưu trữ dự án.
 
-        8. **Availability**:
-        - **Purpose**: Provides information on your availability for new roles.
-        - **Use When**: The question is about how soon you can start a new job or your notice period.
-        - **Examples**: Notice period, availability to start.
+        8. **Khả năng làm việc**:
+        - **Mục đích**: Cung cấp thông tin về khả năng làm việc của bạn cho các vai trò mới.
+        - **Sử dụng khi**: Câu hỏi liên quan đến việc bạn có thể bắt đầu công việc mới sớm như thế nào hoặc thời gian thông báo của bạn.
+        - **Ví dụ**: Thời gian thông báo, khả năng bắt đầu.
 
-        9. **Salary Expectations**:
-        - **Purpose**: Covers your expected salary range.
-        - **Use When**: The question pertains to your salary expectations or compensation requirements.
-        - **Examples**: Desired salary range.
+        9. **Kỳ vọng lương**:
+        - **Mục đích**: Bao gồm phạm vi lương mong đợi của bạn.
+        - **Sử dụng khi**: Câu hỏi liên quan đến kỳ vọng lương hoặc yêu cầu về thù lao của bạn.
+        - **Ví dụ**: Phạm vi lương mong muốn.
 
-        10. **Certifications**:
-            - **Purpose**: Lists your professional certifications or licenses.
-            - **Use When**: The question involves your certifications or qualifications from recognized organizations.
-            - **Examples**: Certification names, issuing bodies, dates of validity.
+        10. **Chứng chỉ**:
+            - **Mục đích**: Liệt kê các chứng chỉ hoặc giấy phép chuyên môn của bạn.
+            - **Sử dụng khi**: Câu hỏi liên quan đến chứng chỉ hoặc trình độ của bạn từ các tổ chức được công nhận.
+            - **Ví dụ**: Tên chứng chỉ, cơ quan cấp, ngày có hiệu lực.
 
-        11. **Languages**:
-            - **Purpose**: Describes the languages you can speak and your proficiency levels.
-            - **Use When**: The question asks about your language skills or proficiency in specific languages.
-            - **Examples**: Languages spoken, proficiency levels.
+        11. **Ngôn ngữ**:
+            - **Mục đích**: Mô tả các ngôn ngữ bạn có thể nói và trình độ thành thạo của bạn.
+            - **Sử dụng khi**: Câu hỏi liên quan đến kỹ năng ngôn ngữ của bạn hoặc trình độ thành thạo các ngôn ngữ cụ thể.
+            - **Ví dụ**: Ngôn ngữ nói được, mức độ thành thạo.
 
-        12. **Interests**:
-            - **Purpose**: Details your personal or professional interests.
-            - **Use When**: The question is about your hobbies, interests, or activities outside of work.
-            - **Examples**: Personal hobbies, professional interests.
+        12. **Sở thích**:
+            - **Mục đích**: Chi tiết về sở thích cá nhân hoặc chuyên môn của bạn.
+            - **Sử dụng khi**: Câu hỏi liên quan đến sở thích, mối quan tâm hoặc hoạt động ngoài công việc của bạn.
+            - **Ví dụ**: Sở thích cá nhân, mối quan tâm chuyên môn.
 
-        13. **Cover Letter**:
-            - **Purpose**: Contains your personalized cover letter or statement.
-            - **Use When**: The question involves your cover letter or specific written content intended for the job application.
-            - **Examples**: Cover letter content, personalized statements.
+        13. **Thư xin việc**:
+            - **Mục đích**: Chứa thư xin việc hoặc tuyên bố cá nhân của bạn.
+            - **Sử dụng khi**: Câu hỏi liên quan đến thư xin việc của bạn hoặc nội dung viết cụ thể dành cho đơn xin việc.
+            - **Ví dụ**: Nội dung thư xin việc, tuyên bố cá nhân.
 
-        Provide only the exact name of the section from the list above with no additional text.
+        Chỉ cung cấp chính xác tên của phần từ danh sách trên mà không có thêm bất kỳ văn bản nào khác.
         """
         prompt = ChatPromptTemplate.from_template(section_prompt)
         chain = prompt | self.llm_cheap | StrOutputParser()
@@ -580,8 +578,7 @@ class GPTAnswerer:
     def answer_question_numeric(self, question: str, default_experience: int = 3) -> int:
         # Trả lời câu hỏi số
         logger.debug(f"Đang trả lời câu hỏi số: {question}")
-        func_template = self._preprocess_template_string(
-            strings.numeric_question_template)
+        func_template = self._preprocess_template_string(strings.numeric_question_template)
         prompt = ChatPromptTemplate.from_template(func_template)
         chain = prompt | self.llm_cheap | StrOutputParser()
         output_str = chain.invoke(
@@ -611,8 +608,7 @@ class GPTAnswerer:
     def answer_question_from_options(self, question: str, options: list[str]) -> str:
         # Trả lời câu hỏi từ các tùy chọn
         logger.debug(f"Đang trả lời câu hỏi từ các tùy chọn: {question}")
-        func_template = self._preprocess_template_string(
-            strings.options_template)
+        func_template = self._preprocess_template_string(strings.options_template)
         prompt = ChatPromptTemplate.from_template(func_template)
         chain = prompt | self.llm_cheap | StrOutputParser()
         output_str = chain.invoke(
